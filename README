@@ -1,0 +1,27 @@
+Rackspace Open Stack Image Processor
+Created by Kevin Prigel
+(C) KDP Innovations, LLC
+See License for licensing details
+
+
+
+This set of functions is designed to process an image file using iMagick by:
+
+1. Copying that file from the web server to a temporary container.
+2. Adding a message to iron.io message queue with the file name, name of the 
+	container, new container name, image sizes to generate, and more.
+3. Running a PHP function that pulls a message from the iron.io message queue.
+4. If the new container name does not exist it creates the container, publishes
+	it to the CDN, and creates a CNAME in Rackspace DNS for easy access.
+5. Generating the various sizes of images and uploading them to the new container, 
+	and optionally deleting the original image.
+6. Adding a message to an iron.io message queue with the original file EXIF data 
+	(which is stripped from the processed images), the original file name, and 
+	your unique ID.
+
+
+
+
+For more details on the operation of the files, see the comments in the PHP files.
+
+
